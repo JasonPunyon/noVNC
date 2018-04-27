@@ -328,6 +328,45 @@
             mozactionhint="Enter" tabindex="-1"></textarea>
     </div>
 
+    <div class="videos">
+        <div class="my-video" id="mine"></div>
+        <div class="their-video" id="theirs"></div>
+    </div>
+
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> 
+    <script src="https://simplewebrtc.com/latest-v3.js"></script>
+
+    <script>
+        var webrtc = new SimpleWebRTC({
+            // the id/element dom element that will hold "our" video
+            localVideoEl: 'mine',
+            // the id/element dom element that will hold remote videos
+            remoteVideosEl: 'theirs',
+            // immediately ask for camera access
+            autoRequestMedia: true
+        });
+
+        var simulateClick = function (elem) {
+            // Create our event (with options)
+            var evt = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            // If cancelled, don't dispatch our event
+            var canceled = !elem.dispatchEvent(evt);
+        };
+
+        webrtc.on('readyToCall', function () {
+            // you can name it anything
+            webrtc.joinRoom('the-great-green-room-with-a-telephone-and-a-red-balloon');
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            simulateClick(document.getElementById("noVNC_connect_button"));
+        });
+    </script>
+    
     <audio id="noVNC_bell">
         <source src="app/sounds/bell.oga" type="audio/ogg">
         <source src="app/sounds/bell.mp3" type="audio/mpeg">
