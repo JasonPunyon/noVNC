@@ -985,7 +985,7 @@ var UI = {
         var path = UI.getSetting('path');
 
         if (typeof password === 'undefined') {
-            password = WebUtil.getConfigVar('password');
+            password = "password"; //WebUtil.getConfigVar('password');
             UI.reconnect_password = password;
         }
 
