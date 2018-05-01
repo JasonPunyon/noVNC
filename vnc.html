@@ -82,6 +82,10 @@
     <!-- actual script modules -->
     <script type="module" crossorigin="anonymous" src="app/ui.js"></script>
     <!-- end scripts -->
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -333,6 +337,12 @@
         <div class="their-video" id="theirs"></div>
     </div>
 
+    <div class="record-buttons">
+        <button id="record-button">Record</button>
+        <button id="stop-button">Stop</button>
+        <button id="download-button">Download</button>
+    </div>
+
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> 
     <script src="https://simplewebrtc.com/latest-v3.js"></script>
 
@@ -365,6 +375,22 @@
         document.addEventListener("DOMContentLoaded", function() {
             simulateClick(document.getElementById("noVNC_connect_button"));
         });
+
+        $("#record-button").click(function() {
+            $.get("http://" + $(location).attr("hostname") + ":5000/Home/StartRecording", function() { 
+                console.log("Recording.");
+            });
+        })
+
+        $("#stop-button").click(function() {
+            $.get("http://" + $(location).attr("hostname") + ":5000/Home/StopRecording", function() { 
+                console.log("Stopped.");
+            });
+        })
+
+        $("#download-button").click(function() {
+            window.location.href = "http://" + $(location).attr("hostname") + ":5000/Home/DownloadRecording";
+        })
     </script>
     
     <audio id="noVNC_bell">
