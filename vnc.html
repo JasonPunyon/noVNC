@@ -377,19 +377,19 @@
         });
 
         $("#record-button").click(function() {
-            $.get("http://" + $(location).attr("hostname") + ":5000/Home/StartRecording", function() { 
+            $.get("https://" + $(location).attr("hostname") + ":5000/Home/StartRecording", function() { 
                 console.log("Recording.");
             });
         })
 
         $("#stop-button").click(function() {
-            $.get("http://" + $(location).attr("hostname") + ":5000/Home/StopRecording", function() { 
+            $.get("https://" + $(location).attr("hostname") + ":5000/Home/StopRecording", function() { 
                 console.log("Stopped.");
             });
         })
 
         $("#download-button").click(function() {
-            window.location.href = "http://" + $(location).attr("hostname") + ":5000/Home/DownloadRecording";
+            window.location.href = "https://" + $(location).attr("hostname") + ":5000/Home/DownloadRecording";
         })
     </script>
     
