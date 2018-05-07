@@ -337,12 +337,6 @@
         <div class="their-video" id="theirs"></div>
     </div>
 
-    <div class="record-buttons">
-        <button id="record-button">Record</button>
-        <button id="stop-button">Stop</button>
-        <button id="download-button">Download</button>
-    </div>
-
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> 
     <script src="https://simplewebrtc.com/latest-v3.js"></script>
 
@@ -376,24 +370,14 @@
         document.addEventListener("DOMContentLoaded", function() {
             simulateClick(document.getElementById("noVNC_connect_button"));
         });
-
-        $("#record-button").click(function() {
-            $.get("https://" + $(location).attr("hostname") + ":5000/Home/StartRecording", function() { 
-                console.log("Recording.");
-            });
-        })
-
-        $("#stop-button").click(function() {
-            $.get("https://" + $(location).attr("hostname") + ":5000/Home/StopRecording", function() { 
-                console.log("Stopped.");
-            });
-        })
-
-        $("#download-button").click(function() {
-            window.location.href = "https://" + $(location).attr("hostname") + ":5000/Home/DownloadRecording";
-        })
     </script>
     
+    <style>
+        #mine {
+            display: none;
+        }
+    </style>
+
     <audio id="noVNC_bell">
         <source src="app/sounds/bell.oga" type="audio/ogg">
         <source src="app/sounds/bell.mp3" type="audio/mpeg">
